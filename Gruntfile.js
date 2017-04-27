@@ -16,7 +16,16 @@ module.exports = function (grunt) {
             readme: {
                 options: {
                     tags: {
-                        'usage-noop': 'funcs+noop'
+                        'usage-once': 'funcs.once',
+                        'usage-maxTimes': 'funcs.maxTimes',
+                        'usage-async': 'funcs.async',
+                        'usage-delay': 'funcs.delay',
+                        'usage-isFunction': 'funcs.isFunction',
+                        'usage-noop': 'funcs.noop',
+                        'usage-ensure': 'funcs.ensure'
+                    },
+                    modifySignature: function (line) {
+                        return line;
                     }
                 }
             }

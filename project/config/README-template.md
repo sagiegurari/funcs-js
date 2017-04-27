@@ -7,7 +7,13 @@
 
 * [Overview](#overview)
 * [Usage](#usage)
+  * [once](#usage-once)
+  * [maxTimes](#usage-maxTimes)
+  * [async](#usage-async)
+  * [delay](#usage-delay)
+  * [isFunction](#usage-isFunction)
   * [noop](#usage-noop)
+  * [ensure](#usage-ensure)
 * [Installation](#installation)
 * [API Documentation](docs/api.md)
 * [Contributing](.github/CONTRIBUTING.md)
@@ -36,7 +42,19 @@ For node.js, simply require the module as follows:
 var funcs = require('funcs');
 ````
 
+<a name="usage-once"></a>
+
+<a name="usage-maxTimes"></a>
+
+<a name="usage-async"></a>
+
+<a name="usage-delay"></a>
+
+<a name="usage-isFunction"></a>
+
 <a name="usage-noop"></a>
+
+<a name="usage-ensure"></a>
 
 <a name="installation"></a>
 ## Installation
