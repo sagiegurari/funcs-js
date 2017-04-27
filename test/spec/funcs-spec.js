@@ -1,4 +1,4 @@
-/*global describe: false, assert: false, it: false, beforeEach: false */
+/*global describe: false, assert: false, it: false */
 
 describe('funcs', function () {
     'use strict';
@@ -6,17 +6,19 @@ describe('funcs', function () {
     var createCounterFn = function (validateInput) {
         var counter = 0;
 
-        var fn = function (arg1, arg2, arg3) {
+        var fn = function (arg1, arg2, arg3, arg4) {
             if (validateInput) {
                 assert.strictEqual(arg1, 1);
                 assert.strictEqual(arg2, 'test');
                 assert.strictEqual(arg3, false);
             }
-            
+
             counter++;
-            
+
             if ((!validateInput) && arg1 && (typeof arg1 === 'function')) {
                 arg1(counter);
+            } else if (arg4 && (typeof arg4 === 'function')) {
+                arg4(counter);
             }
 
             return counter;
@@ -344,11 +346,11 @@ describe('funcs', function () {
             assert.strictEqual(fn.getCounter(), 0);
             var result = output(function (counter) {
                 assert.strictEqual(counter, 1);
-                
+
                 output(function () {
                     assert.fail();
                 });
-                
+
                 setTimeout(done, 10);
             });
             assert.isUndefined(result);
@@ -405,18 +407,217 @@ describe('funcs', function () {
             assert.isFunction(funcs.once);
 
             var fn = createCounterFn();
-            var output = funcs.once(fn).async();
+            var output = funcs.once(fn).delay(0);
             assert.strictEqual(fn.getCounter(), 0);
             var result = output(function (counter) {
                 assert.strictEqual(counter, 1);
-                
+
                 output(function () {
                     assert.fail();
                 });
-                
+
                 setTimeout(done, 10);
             });
             assert.isUndefined(result);
+        });
+    });
+
+    describe('delay', function () {
+        it('no function', function () {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.delay);
+
+            var output = funcs.delay(10, 10);
+            assert.isTrue(output === funcs.noop);
+        });
+
+        it('delay not provided', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.delay);
+
+            var fn = createCounterFn();
+            var output = funcs.delay(fn);
+            assert.isFalse(output === fn);
+            output(function (counter) {
+                assert.strictEqual(counter, 1);
+
+                done();
+            });
+        });
+
+        it('negative delay', function () {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.delay);
+
+            var fn = createCounterFn();
+            var output = funcs.delay(fn, -1);
+            assert.isTrue(output === fn);
+        });
+
+        it('delay is 0', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.delay);
+
+            var fn = createCounterFn();
+            var output = funcs.delay(fn, 0);
+            assert.isFalse(output === fn);
+            output(function (counter) {
+                assert.strictEqual(counter, 1);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                done();
+            });
+        });
+
+        it('delay is positive', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.delay);
+
+            var delay = 20;
+            var fn = createCounterFn();
+            var output = funcs.delay(fn, delay);
+            assert.isFalse(output === fn);
+            var startTime = Date.now();
+            output(function (counter) {
+                assert.strictEqual(counter, 1);
+                assert.isTrue((Date.now() - startTime) >= delay);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                done();
+            });
+        });
+
+        it('validate input proxy', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.delay);
+
+            var delay = 20;
+            var fn = createCounterFn(true);
+            var output = funcs.delay(fn, delay);
+            assert.isFalse(output === fn);
+            var startTime = Date.now();
+            output(1, 'test', false, function (counter) {
+                assert.strictEqual(counter, 1);
+                assert.isTrue((Date.now() - startTime) >= delay);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                done();
+            });
+        });
+
+        it('chaining', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.delay);
+
+            var delay = 20;
+            var fn = createCounterFn();
+            var output = funcs.delay(fn, delay).once();
+            assert.strictEqual(fn.getCounter(), 0);
+            var startTime = Date.now();
+            output(function (counter) {
+                assert.strictEqual(counter, 1);
+                assert.isTrue((Date.now() - startTime) >= delay);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                output(function () {
+                    assert.fail();
+                });
+
+                setTimeout(done, delay + 50);
+            });
+        });
+    });
+
+    describe('async', function () {
+        it('no function', function () {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.async);
+
+            var output = funcs.async(10);
+            assert.isTrue(output === funcs.noop);
+        });
+
+        it('async', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.async);
+
+            var fn = createCounterFn();
+            var output = funcs.async(fn);
+            assert.isFalse(output === fn);
+            var invoked = false;
+            output(function (counter) {
+                invoked = true;
+                assert.strictEqual(counter, 1);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                done();
+            });
+
+            assert.isFalse(invoked);
+        });
+
+        it('validate input proxy', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.async);
+
+            var fn = createCounterFn(true);
+            var output = funcs.async(fn);
+            assert.isFalse(output === fn);
+            var invoked = false;
+            output(1, 'test', false, function (counter) {
+                invoked = true;
+                assert.strictEqual(counter, 1);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                done();
+            });
+
+            assert.isFalse(invoked);
+        });
+
+        it('chaining', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.async);
+
+            var fn = createCounterFn();
+            var output = funcs.async(fn).maxTimes(1);
+            assert.strictEqual(fn.getCounter(), 0);
+            var invoked = false;
+            output(function (counter) {
+                invoked = true;
+                assert.strictEqual(counter, 1);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                output(function () {
+                    assert.fail();
+                });
+
+                setTimeout(done, 50);
+            });
+
+            assert.isFalse(invoked);
         });
     });
 });

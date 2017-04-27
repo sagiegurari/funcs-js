@@ -1,18 +1,18 @@
 <a name="funcs"></a>
 
 ## funcs : <code>object</code>
-Function utilities.
+Function wrappers and utilities for enhanced behavior.
 
 **Kind**: global namespace  
 **Author**: Sagie Gur-Ari  
 
 * [funcs](#funcs) : <code>object</code>
     * [.noop()](#funcs.noop) ⇒ <code>undefined</code>
-    * [.isFunction()](#funcs.isFunction) ⇒ <code>Boolean</code>
-    * [.ensure()](#funcs.ensure) ⇒ <code>function</code>
+    * [.isFunction([fn])](#funcs.isFunction) ⇒ <code>Boolean</code>
+    * [.ensure([fn])](#funcs.ensure) ⇒ <code>function</code>
     * [.maxTimes(fn, times)](#funcs.maxTimes) ⇒ <code>function</code>
     * [.once(fn)](#funcs.once) ⇒ <code>function</code>
-    * [.delay(fn, delay)](#funcs.delay) ⇒ <code>function</code>
+    * [.delay(fn, [delay])](#funcs.delay) ⇒ <code>function</code>
     * [.async(fn)](#funcs.async) ⇒ <code>function</code>
 
 <a name="funcs.noop"></a>
@@ -24,12 +24,16 @@ Empty function.
 **Access**: public  
 <a name="funcs.isFunction"></a>
 
-### funcs.isFunction() ⇒ <code>Boolean</code>
+### funcs.isFunction([fn]) ⇒ <code>Boolean</code>
 Returns true if the provided argument is a function.
 
 **Returns**: <code>Boolean</code> - True if the provided argument is a function  
 **Access**: public  
-**Params**: <code>function</code> [fn] - The function to check  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [fn] | <code>function</code> | The function to check |
+
 **Example**  
 ````js
 var isFn = funcs.isFunction(myFunction);
@@ -41,13 +45,17 @@ funcs.isFunction(true); //false
 ````
 <a name="funcs.ensure"></a>
 
-### funcs.ensure() ⇒ <code>function</code>
+### funcs.ensure([fn]) ⇒ <code>function</code>
 Ensures a return function.<br>
 If a function is provided, it will be returned, otherwise a noop function will be returned.
 
 **Returns**: <code>function</code> - The original function if provided, or a noop  
 **Access**: public  
-**Params**: <code>function</code> [fn] - The function to check  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [fn] | <code>function</code> | The function to check |
+
 **Example**  
 ````js
 var handler = funcs.ensure(maybeHandler);
@@ -96,17 +104,17 @@ var asyncOnceCallback = funcs.once(callback).async();
 ````
 <a name="funcs.delay"></a>
 
-### funcs.delay(fn, delay) ⇒ <code>function</code>
+### funcs.delay(fn, [delay]) ⇒ <code>function</code>
 Trigger the actual function only after the provided delay.<br>
 This function output can be chained with other func apis.
 
 **Returns**: <code>function</code> - The new wrapper function  
 **Access**: public  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| fn | <code>function</code> | The function to wrap |
-| delay | <code>Number</code> | The invocation delay in millies |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| fn | <code>function</code> |  | The function to wrap |
+| [delay] | <code>Number</code> | <code>0</code> | The invocation delay in millies |
 
 **Example**  
 ````js

@@ -91,7 +91,7 @@ var asyncOnceCallback = funcs.async(callback).once();
 
 <a name="usage-delay"></a>
 <!-- markdownlint-disable MD009 MD031 MD036 -->
-### 'funcs.delay(fn, delay) ⇒ function'
+### 'funcs.delay(fn, [delay]) ⇒ function'
 Trigger the actual function only after the provided delay.<br>
 This function output can be chained with other func apis.
 
@@ -106,10 +106,9 @@ var delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
 
 <a name="usage-isFunction"></a>
 <!-- markdownlint-disable MD009 MD031 MD036 -->
-### 'funcs.isFunction() ⇒ Boolean'
+### 'funcs.isFunction([fn]) ⇒ Boolean'
 Returns true if the provided argument is a function.
 
-**Params**: <code>function</code> [fn] - The function to check  
 **Example**  
 ````js
 var isFn = funcs.isFunction(myFunction);
@@ -130,11 +129,10 @@ Empty function.
 
 <a name="usage-ensure"></a>
 <!-- markdownlint-disable MD009 MD031 MD036 -->
-### 'funcs.ensure() ⇒ function'
+### 'funcs.ensure([fn]) ⇒ function'
 Ensures a return function.<br>
 If a function is provided, it will be returned, otherwise a noop function will be returned.
 
-**Params**: <code>function</code> [fn] - The function to check  
 **Example**  
 ````js
 var handler = funcs.ensure(maybeHandler);

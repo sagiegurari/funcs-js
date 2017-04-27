@@ -139,7 +139,7 @@
      * @memberof! funcs
      * @alias funcs.isFunction
      * @public
-     * @params {function} [fn] - The function to check
+     * @param {function} [fn] - The function to check
      * @returns {Boolean} True if the provided argument is a function
      * @example
      * ````js
@@ -153,7 +153,7 @@
      */
     funcs.isFunction = function (fn) {
         return (fn && (typeof fn === 'function')) || false;
-    }
+    };
 
     /**
      * Ensures a return function.<br>
@@ -163,7 +163,7 @@
      * @memberof! funcs
      * @alias funcs.ensure
      * @public
-     * @params {function} [fn] - The function to check
+     * @param {function} [fn] - The function to check
      * @returns {function} The original function if provided, or a noop
      * @example
      * ````js
@@ -250,7 +250,7 @@
      * @alias funcs.delay
      * @public
      * @param {function} fn - The function to wrap
-     * @param {Number} delay - The invocation delay in millies
+     * @param {Number} [delay=0] - The invocation delay in millies
      * @returns {function} The new wrapper function
      * @example
      * ````js
@@ -274,7 +274,7 @@
         var fnDelayWrapper = function () {
             var fnArguments = arguments;
 
-            setTimeout(function () {
+            setTimeout(function postDelay() {
                 fn.apply(null, fnArguments);
             }, delay);
         };
