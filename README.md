@@ -1,7 +1,7 @@
-# funcs
+# funcs-js
 
-[![Bower Version](https://img.shields.io/bower/v/funcs-js.svg?style=flat)](https://github.com/sagiegurari/funcs/releases) [![NPM Version](http://img.shields.io/npm/v/funcs.svg?style=flat)](https://www.npmjs.org/package/funcs) [![Build Status](https://travis-ci.org/sagiegurari/funcs.svg)](http://travis-ci.org/sagiegurari/funcs) [![Coverage Status](https://coveralls.io/repos/sagiegurari/funcs/badge.svg)](https://coveralls.io/r/sagiegurari/funcs) [![bitHound Code](https://www.bithound.io/github/sagiegurari/funcs/badges/code.svg)](https://www.bithound.io/github/sagiegurari/funcs) [![Inline docs](http://inch-ci.org/github/sagiegurari/funcs.svg?branch=master)](http://inch-ci.org/github/sagiegurari/funcs)<br>
-[![License](https://img.shields.io/bower/l/funcs-js.svg)](https://github.com/sagiegurari/funcs/blob/master/LICENSE) [![Known Vulnerabilities](https://snyk.io/test/github/sagiegurari/funcs/badge.svg)](https://snyk.io/test/github/sagiegurari/funcs) [![Retire Status](http://retire.insecurity.today/api/image?uri=https://raw.githubusercontent.com/sagiegurari/funcs-js/master/bower.json)](http://retire.insecurity.today/api/image?uri=https://raw.githubusercontent.com/sagiegurari/funcs-js/master/bower.json)
+[![Bower Version](https://img.shields.io/bower/v/funcs-js.svg?style=flat)](https://github.com/sagiegurari/funcs-js/releases) [![NPM Version](http://img.shields.io/npm/v/funcs-js.svg?style=flat)](https://www.npmjs.org/package/funcs-js) [![Build Status](https://travis-ci.org/sagiegurari/funcs-js.svg)](http://travis-ci.org/sagiegurari/funcs-js) [![Coverage Status](https://coveralls.io/repos/sagiegurari/funcs-js/badge.svg)](https://coveralls.io/r/sagiegurari/funcs-js) [![bitHound Code](https://www.bithound.io/github/sagiegurari/funcs-js/badges/code.svg)](https://www.bithound.io/github/sagiegurari/funcs-js) [![Inline docs](http://inch-ci.org/github/sagiegurari/funcs-js.svg?branch=master)](http://inch-ci.org/github/sagiegurari/funcs-js)<br>
+[![License](https://img.shields.io/bower/l/funcs-js.svg)](https://github.com/sagiegurari/funcs-js/blob/master/LICENSE) [![Known Vulnerabilities](https://snyk.io/test/github/sagiegurari/funcs-js/badge.svg)](https://snyk.io/test/github/sagiegurari/funcs-js) [![Retire Status](http://retire.insecurity.today/api/image?uri=https://raw.githubusercontent.com/sagiegurari/funcs-js/master/bower.json)](http://retire.insecurity.today/api/image?uri=https://raw.githubusercontent.com/sagiegurari/funcs-js/master/bower.json)
 
 > Function wrappers for enhanced behavior.
 
@@ -22,7 +22,7 @@
 
 <a name="overview"></a>
 ## Overview
-The funcs provides different utility functions which enable to wrap functions and modify their behavior.
+The funcs-js provides different utility functions which enable to wrap functions and modify their behavior.
 
 This library requires no external dependencies, and it is supported for both browser and node.js environments.
 
@@ -39,7 +39,7 @@ When using an AMD loader (such as RequireJS) or CommonJS type loader, the funcs 
 For node.js, simply require the module as follows:
 
 ````js
-var funcs = require('funcs');
+var funcs = require('funcs-js');
 ````
 
 <a name="usage-once"></a>
@@ -150,7 +150,7 @@ bower install funcs-js --save
 Or if you are using NPM, you can install it as follows:
 
 ```sh
-npm install --save funcs
+npm install --save funcs-js
 ```
 
 ## API Documentation
@@ -164,7 +164,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
-| 2017-04-27  | v0.0.2  | Rename package for bower as funcs-js |
+| 2017-04-27  | v0.0.3  | Rename package as funcs-js |
 | 2017-04-27  | v0.0.1  | Initial release |
 
 <a name="license"></a>

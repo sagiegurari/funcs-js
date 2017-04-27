@@ -1,12 +1,12 @@
 {
   "name": "funcs-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Function wrappers for enhanced behavior.",
   "authors": [
     "Sagie Gur-Ari <sagiegurari@gmail.com>"
   ],
   "license": "Apache-2.0",
-  "homepage": "http://github.com/sagiegurari/funcs",
+  "homepage": "http://github.com/sagiegurari/funcs-js",
   "keywords": [
     "function",
     "functions",
