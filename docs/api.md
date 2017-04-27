@@ -64,7 +64,7 @@ var handler = funcs.ensure(maybeHandler);
 
 ### funcs.maxTimes(fn, times) ⇒ <code>function</code>
 Wraps the provided function and ensures it is invoked no more than the provided amount.<br>
-This function output can be chained with other func apis.
+This function output can be chained with other funcs apis.
 
 **Returns**: <code>function</code> - The new wrapper function  
 **Access**: public  
@@ -86,7 +86,7 @@ var delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
 ### funcs.once(fn) ⇒ <code>function</code>
 Ensures the provided function is invoked only once.<br>
 This is the same as calling funcs.times(fn, 1)<br>
-This function output can be chained with other func apis.
+This function output can be chained with other funcs apis.
 
 **Returns**: <code>function</code> - The new wrapper function  
 **Access**: public  
@@ -106,7 +106,7 @@ var asyncOnceCallback = funcs.once(callback).async();
 
 ### funcs.delay(fn, [delay]) ⇒ <code>function</code>
 Trigger the actual function only after the provided delay.<br>
-This function output can be chained with other func apis.
+This function output can be chained with other funcs apis.
 
 **Returns**: <code>function</code> - The new wrapper function  
 **Access**: public  
@@ -128,7 +128,7 @@ var delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
 ### funcs.async(fn) ⇒ <code>function</code>
 Ensures the function is invoked only in the next cycle.<br>
 This is the same as calling funcs.delay(fn, 0)<br>
-This function output can be chained with other func apis.
+This function output can be chained with other funcs apis.
 
 **Returns**: <code>function</code> - The new wrapper function  
 **Access**: public  

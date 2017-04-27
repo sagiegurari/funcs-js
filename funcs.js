@@ -180,7 +180,7 @@
 
     /**
      * Wraps the provided function and ensures it is invoked no more than the provided amount.<br>
-     * This function output can be chained with other func apis.
+     * This function output can be chained with other funcs apis.
      *
      * @function
      * @memberof! funcs
@@ -221,7 +221,7 @@
     /**
      * Ensures the provided function is invoked only once.<br>
      * This is the same as calling funcs.times(fn, 1)<br>
-     * This function output can be chained with other func apis.
+     * This function output can be chained with other funcs apis.
      *
      * @function
      * @memberof! funcs
@@ -243,7 +243,7 @@
 
     /**
      * Trigger the actual function only after the provided delay.<br>
-     * This function output can be chained with other func apis.
+     * This function output can be chained with other funcs apis.
      *
      * @function
      * @memberof! funcs
@@ -288,7 +288,7 @@
     /**
      * Ensures the function is invoked only in the next cycle.<br>
      * This is the same as calling funcs.delay(fn, 0)<br>
-     * This function output can be chained with other func apis.
+     * This function output can be chained with other funcs apis.
      *
      * @function
      * @memberof! funcs

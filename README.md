@@ -48,7 +48,7 @@ var funcs = require('funcs-js');
 ### 'funcs.once(fn) ⇒ function'
 Ensures the provided function is invoked only once.<br>
 This is the same as calling funcs.times(fn, 1)<br>
-This function output can be chained with other func apis.
+This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
@@ -63,7 +63,7 @@ var asyncOnceCallback = funcs.once(callback).async();
 <!-- markdownlint-disable MD009 MD031 MD036 -->
 ### 'funcs.maxTimes(fn, times) ⇒ function'
 Wraps the provided function and ensures it is invoked no more than the provided amount.<br>
-This function output can be chained with other func apis.
+This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
@@ -79,7 +79,7 @@ var delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
 ### 'funcs.async(fn) ⇒ function'
 Ensures the function is invoked only in the next cycle.<br>
 This is the same as calling funcs.delay(fn, 0)<br>
-This function output can be chained with other func apis.
+This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
@@ -94,7 +94,7 @@ var asyncOnceCallback = funcs.async(callback).once();
 <!-- markdownlint-disable MD009 MD031 MD036 -->
 ### 'funcs.delay(fn, [delay]) ⇒ function'
 Trigger the actual function only after the provided delay.<br>
-This function output can be chained with other func apis.
+This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
