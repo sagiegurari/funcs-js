@@ -1,7 +1,7 @@
 /*global module: false, define: false */
 
 /**
- * Function utilities.
+ * Function wrappers and utilities for enhanced behavior.
  *
  * @name funcs
  * @namespace funcs
