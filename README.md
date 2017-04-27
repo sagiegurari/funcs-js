@@ -1,7 +1,8 @@
 # funcs-js
 
 [![Bower Version](https://img.shields.io/bower/v/funcs-js.svg?style=flat)](https://github.com/sagiegurari/funcs-js/releases) [![NPM Version](http://img.shields.io/npm/v/funcs-js.svg?style=flat)](https://www.npmjs.org/package/funcs-js) [![Build Status](https://travis-ci.org/sagiegurari/funcs-js.svg)](http://travis-ci.org/sagiegurari/funcs-js) [![Coverage Status](https://coveralls.io/repos/sagiegurari/funcs-js/badge.svg)](https://coveralls.io/r/sagiegurari/funcs-js) [![bitHound Code](https://www.bithound.io/github/sagiegurari/funcs-js/badges/code.svg)](https://www.bithound.io/github/sagiegurari/funcs-js) [![Inline docs](http://inch-ci.org/github/sagiegurari/funcs-js.svg?branch=master)](http://inch-ci.org/github/sagiegurari/funcs-js)<br>
-[![License](https://img.shields.io/bower/l/funcs-js.svg)](https://github.com/sagiegurari/funcs-js/blob/master/LICENSE) [![Known Vulnerabilities](https://snyk.io/test/github/sagiegurari/funcs-js/badge.svg)](https://snyk.io/test/github/sagiegurari/funcs-js) [![Retire Status](http://retire.insecurity.today/api/image?uri=https://raw.githubusercontent.com/sagiegurari/funcs-js/master/bower.json)](http://retire.insecurity.today/api/image?uri=https://raw.githubusercontent.com/sagiegurari/funcs-js/master/bower.json)
+[![License](https://img.shields.io/npm/l/funcs-js.svg?style=flat)](https://github.com/sagiegurari/funcs-js/blob/master/LICENSE) [![Total Downloads](https://img.shields.io/npm/dt/funcs-js.svg?style=flat)](https://www.npmjs.org/package/funcs-js) [![Dependency Status](https://david-dm.org/sagiegurari/funcs-js.svg)](https://david-dm.org/sagiegurari/funcs-js) [![devDependency Status](https://david-dm.org/sagiegurari/funcs-js/dev-status.svg)](https://david-dm.org/sagiegurari/funcs-js?type=dev)<br>
+[![Known Vulnerabilities](https://snyk.io/test/github/sagiegurari/funcs-js/badge.svg)](https://snyk.io/test/github/sagiegurari/funcs-js) [![Retire Status](http://retire.insecurity.today/api/image?uri=https://raw.githubusercontent.com/sagiegurari/funcs-js/master/package.json)](http://retire.insecurity.today/api/image?uri=https://raw.githubusercontent.com/sagiegurari/funcs-js/master/package.json)
 
 > Function wrappers for enhanced behavior.
 
@@ -164,6 +165,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
+| 2017-04-28  | v0.0.6  | Docs |
 | 2017-04-28  | v0.0.5  | Rename package as funcs-js |
 | 2017-04-27  | v0.0.1  | Initial release |
 
