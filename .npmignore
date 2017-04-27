@@ -1,0 +1,6 @@
+.idea
+.c9
+target
+.temp
+.travis.yml
+bower_components

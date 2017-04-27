@@ -1,0 +1,28 @@
+{
+  "name": "funcs",
+  "version": "0.0.1",
+  "description": "Function wrappers for enhanced behavior.",
+  "authors": [
+    "Sagie Gur-Ari <sagiegurari@gmail.com>"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "http://github.com/sagiegurari/funcs",
+  "keywords": [
+    "function",
+    "functions",
+    "utilities"
+  ],
+  "main": "funcs.js",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    ".github",
+    "project",
+    "test",
+    "tests",
+    "example",
+    "target"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}
