@@ -23,9 +23,6 @@ module.exports = function (grunt) {
                         'usage-isFunction': 'funcs.isFunction',
                         'usage-noop': 'funcs.noop',
                         'usage-ensure': 'funcs.ensure'
-                    },
-                    modifySignature: function (line) {
-                        return line;
                     }
                 }
             }

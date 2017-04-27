@@ -1,6 +1,6 @@
 {
-  "name": "funcs",
-  "version": "0.0.1",
+  "name": "funcs-js",
+  "version": "0.0.2",
   "description": "Function wrappers for enhanced behavior.",
   "authors": [
     "Sagie Gur-Ari <sagiegurari@gmail.com>"
