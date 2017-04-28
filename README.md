@@ -45,7 +45,7 @@ var funcs = require('funcs-js');
 
 <a name="usage-once"></a>
 <!-- markdownlint-disable MD009 MD031 MD036 -->
-### 'funcs.once(fn) ⇒ function'
+### 'funcs.once(fn, [options]) ⇒ function'
 Ensures the provided function is invoked only once.<br>
 This is the same as calling funcs.times(fn, 1)<br>
 This function output can be chained with other funcs apis.
@@ -54,14 +54,14 @@ This function output can be chained with other funcs apis.
 ````js
 var onlyOnceCallback = funcs.once(callback);
 
-//can also chain
+//can also chain multiple modifications (chained functions do not require original function as argument)
 var asyncOnceCallback = funcs.once(callback).async();
 ````
 <!-- markdownlint-enable MD009 MD031 MD036 -->
 
 <a name="usage-maxTimes"></a>
 <!-- markdownlint-disable MD009 MD031 MD036 -->
-### 'funcs.maxTimes(fn, times) ⇒ function'
+### 'funcs.maxTimes(fn, times, [options]) ⇒ function'
 Wraps the provided function and ensures it is invoked no more than the provided amount.<br>
 This function output can be chained with other funcs apis.
 
@@ -69,7 +69,7 @@ This function output can be chained with other funcs apis.
 ````js
 var onlyOnceCallback = funcs.maxTimes(callback, 1);
 
-//can also chain
+//can also chain multiple modifications (chained functions do not require original function as argument)
 var delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
 ````
 <!-- markdownlint-enable MD009 MD031 MD036 -->
@@ -85,7 +85,7 @@ This function output can be chained with other funcs apis.
 ````js
 var asyncCallback = funcs.async(callback);
 
-//can also chain
+//can also chain multiple modifications (chained functions do not require original function as argument)
 var asyncOnceCallback = funcs.async(callback).once();
 ````
 <!-- markdownlint-enable MD009 MD031 MD036 -->
@@ -100,7 +100,7 @@ This function output can be chained with other funcs apis.
 ````js
 var delayedCallback = funcs.delay(callback, 500);
 
-//can also chain
+//can also chain multiple modifications (chained functions do not require original function as argument)
 var delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
 ````
 <!-- markdownlint-enable MD009 MD031 MD036 -->
@@ -165,6 +165,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
+| 2017-04-28  | v1.0.2  | Maintenance |
 | 2017-04-28  | v1.0.1  | Offical release |
 | 2017-04-28  | v0.0.6  | Docs |
 | 2017-04-28  | v0.0.5  | Rename package as funcs-js |

@@ -190,25 +190,36 @@
      * @public
      * @param {function} fn - The function to wrap
      * @param {Number} times - The max times the provided function will be invoked
+     * @param {Object} [options] - see details
+     * @param {Boolean} [options.callbackStyle=false] - If true, the provided function will only get the first 2 arguments (will improve runtime performance)
      * @returns {function} The new wrapper function
      * @example
      * ````js
      * var onlyOnceCallback = funcs.maxTimes(callback, 1);
      *
-     * //can also chain
+     * //can also chain multiple modifications (chained functions do not require original function as argument)
      * var delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
      * ````
      */
-    funcs.maxTimes = function (fn, times) {
+    funcs.maxTimes = function (fn, times, options) {
         if ((!this.isFunction(fn)) || (!times) || (typeof times !== 'number') || (times < 0)) {
             return this.noop;
         }
 
+        var callbackStyle = false;
+        if (options && options.callbackStyle) {
+            callbackStyle = true;
+        }
+
         var counter = 0;
 
-        var fnMaxTimesWrapper = function () {
+        var fnMaxTimesWrapper = function (arg1, arg2) {
             if (counter < times) {
                 counter++;
+
+                if (callbackStyle) {
+                    return fn(arg1, arg2);
+                }
 
                 return fn.apply(null, arguments);
             }
@@ -230,17 +241,19 @@
      * @alias funcs.once
      * @public
      * @param {function} fn - The function to wrap
+     * @param {Object} [options] - see details
+     * @param {Boolean} [options.callbackStyle=false] - If true, the provided function will only get the first 2 arguments (will improve runtime performance)
      * @returns {function} The new wrapper function
      * @example
      * ````js
      * var onlyOnceCallback = funcs.once(callback);
      *
-     * //can also chain
+     * //can also chain multiple modifications (chained functions do not require original function as argument)
      * var asyncOnceCallback = funcs.once(callback).async();
      * ````
      */
-    funcs.once = function (fn) {
-        return this.maxTimes(fn, 1);
+    funcs.once = function (fn, options) {
+        return this.maxTimes(fn, 1, options);
     };
 
     /**
@@ -258,7 +271,7 @@
      * ````js
      * var delayedCallback = funcs.delay(callback, 500);
      *
-     * //can also chain
+     * //can also chain multiple modifications (chained functions do not require original function as argument)
      * var delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
      * ````
      */
@@ -302,7 +315,7 @@
      * ````js
      * var asyncCallback = funcs.async(callback);
      *
-     * //can also chain
+     * //can also chain multiple modifications (chained functions do not require original function as argument)
      * var asyncOnceCallback = funcs.async(callback).once();
      * ````
      */

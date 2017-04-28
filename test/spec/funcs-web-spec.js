@@ -3,22 +3,25 @@
 describe('funcs', function () {
     'use strict';
 
-    var createCounterFn = function (validateInput) {
+    var createCounterFn = function (validateInput, callbackStyle) {
         var counter = 0;
 
-        var fn = function (arg1, arg2, arg3, arg4) {
+        var fn = function (arg1, arg2, arg3) {
             if (validateInput) {
                 assert.strictEqual(arg1, 1);
                 assert.strictEqual(arg2, 'test');
-                assert.strictEqual(arg3, false);
+                if (callbackStyle) {
+                    assert.isUndefined(arg3);
+                } else {
+                    assert.strictEqual(arg3, false);
+                }
             }
 
             counter++;
 
-            if ((!validateInput) && arg1 && (typeof arg1 === 'function')) {
-                arg1(counter);
-            } else if (arg4 && (typeof arg4 === 'function')) {
-                arg4(counter);
+            var cb = arguments[arguments.length - 1];
+            if (cb && (typeof cb === 'function')) {
+                cb(counter);
             }
 
             return counter;
@@ -335,6 +338,24 @@ describe('funcs', function () {
             assert.strictEqual(fn.getCounter(), 2);
         });
 
+        it('callback style', function () {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.maxTimes);
+
+            var fn = createCounterFn(true, true);
+            var output = funcs.maxTimes(fn, 1, {
+                callbackStyle: true
+            });
+            assert.strictEqual(fn.getCounter(), 0);
+            assert.strictEqual(output(1, 'test', 'bad'), 1);
+            assert.isUndefined(output(1, 'test', 'bad'));
+            assert.strictEqual(fn.getCounter(), 1);
+            fn(1, 'test');
+            assert.strictEqual(fn.getCounter(), 2);
+        });
+
         it('chaining', function (done) {
             var funcs = window.funcs;
             assert.isDefined(funcs);
@@ -397,6 +418,24 @@ describe('funcs', function () {
             assert.isUndefined(output(1, 'test', false));
             assert.strictEqual(fn.getCounter(), 1);
             fn(1, 'test', false);
+            assert.strictEqual(fn.getCounter(), 2);
+        });
+
+        it('callback style', function () {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.once);
+
+            var fn = createCounterFn(true, true);
+            var output = funcs.once(fn, {
+                callbackStyle: true
+            });
+            assert.strictEqual(fn.getCounter(), 0);
+            assert.strictEqual(output(1, 'test', 'bad'), 1);
+            assert.isUndefined(output(1, 'test', 'bad'));
+            assert.strictEqual(fn.getCounter(), 1);
+            fn(1, 'test');
             assert.strictEqual(fn.getCounter(), 2);
         });
 
