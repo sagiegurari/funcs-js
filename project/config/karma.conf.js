@@ -14,7 +14,7 @@ module.exports = function (config) {
         files: [
             'test/helpers/**/*.js',
             mainJSFile,
-            'test/spec/**/*.js'
+            'test/spec/**/*-web-spec.js'
         ],
         port: 8080,
         logLevel: config.LOG_INFO,

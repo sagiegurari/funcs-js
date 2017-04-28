@@ -24,6 +24,7 @@
 
     var funcs = factory();
 
+    /*istanbul ignore next*/
     /**
      * Initializes the funcs API (only used for testing).
      *
@@ -38,6 +39,7 @@
         return initFuncs(context, factory);
     };
 
+    /*istanbul ignore next*/
     if ((typeof define === 'function') && define.amd) {
         define(function defineLib() {
             return funcs;

@@ -10,7 +10,7 @@ module.exports = function (grunt) {
     commons.grunt.config.initConfig(grunt, {
         buildConfig: {
             projectRoot: __dirname,
-            nodeProject: false
+            dualProject: true
         },
         apidoc2readme: {
             readme: {
