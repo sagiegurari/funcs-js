@@ -12,8 +12,8 @@ Function wrappers and utilities for enhanced behavior.
     * [.ensure([fn])](#funcs.ensure) ⇒ <code>function</code>
     * [.maxTimes(fn, times, [options])](#funcs.maxTimes) ⇒ <code>function</code>
     * [.once(fn, [options])](#funcs.once) ⇒ <code>function</code>
-    * [.delay(fn, [delay])](#funcs.delay) ⇒ <code>function</code>
-    * [.async(fn)](#funcs.async) ⇒ <code>function</code>
+    * [.delay(fn, [delay], [options])](#funcs.delay) ⇒ <code>function</code>
+    * [.async(fn, [options])](#funcs.async) ⇒ <code>function</code>
 
 <a name="funcs.noop"></a>
 
@@ -108,7 +108,7 @@ var asyncOnceCallback = funcs.once(callback).async();
 ````
 <a name="funcs.delay"></a>
 
-### funcs.delay(fn, [delay]) ⇒ <code>function</code>
+### funcs.delay(fn, [delay], [options]) ⇒ <code>function</code>
 Trigger the actual function only after the provided delay.<br>
 This function output can be chained with other funcs apis.
 
@@ -119,6 +119,8 @@ This function output can be chained with other funcs apis.
 | --- | --- | --- | --- |
 | fn | <code>function</code> |  | The function to wrap |
 | [delay] | <code>Number</code> | <code>0</code> | The invocation delay in millies |
+| [options] | <code>Object</code> |  | see details |
+| [options.callbackStyle] | <code>Boolean</code> | <code>false</code> | If true, the provided function will only get the first 2 arguments (will improve runtime performance) |
 
 **Example**  
 ````js
@@ -129,7 +131,7 @@ var delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
 ````
 <a name="funcs.async"></a>
 
-### funcs.async(fn) ⇒ <code>function</code>
+### funcs.async(fn, [options]) ⇒ <code>function</code>
 Ensures the function is invoked only in the next cycle.<br>
 This is the same as calling funcs.delay(fn, 0)<br>
 This function output can be chained with other funcs apis.
@@ -137,9 +139,11 @@ This function output can be chained with other funcs apis.
 **Returns**: <code>function</code> - The new wrapper function  
 **Access**: public  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| fn | <code>function</code> | The function to wrap |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| fn | <code>function</code> |  | The function to wrap |
+| [options] | <code>Object</code> |  | see details |
+| [options.callbackStyle] | <code>Boolean</code> | <code>false</code> | If true, the provided function will only get the first 2 arguments (will improve runtime performance) |
 
 **Example**  
 ````js

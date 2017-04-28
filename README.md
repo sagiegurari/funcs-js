@@ -76,7 +76,7 @@ var delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
 
 <a name="usage-async"></a>
 <!-- markdownlint-disable MD009 MD031 MD036 -->
-### 'funcs.async(fn) ⇒ function'
+### 'funcs.async(fn, [options]) ⇒ function'
 Ensures the function is invoked only in the next cycle.<br>
 This is the same as calling funcs.delay(fn, 0)<br>
 This function output can be chained with other funcs apis.
@@ -92,7 +92,7 @@ var asyncOnceCallback = funcs.async(callback).once();
 
 <a name="usage-delay"></a>
 <!-- markdownlint-disable MD009 MD031 MD036 -->
-### 'funcs.delay(fn, [delay]) ⇒ function'
+### 'funcs.delay(fn, [delay], [options]) ⇒ function'
 Trigger the actual function only after the provided delay.<br>
 This function output can be chained with other funcs apis.
 
@@ -165,7 +165,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
-| 2017-04-28  | v1.0.2  | Maintenance |
+| 2017-04-28  | v1.0.3  | Maintenance |
 | 2017-04-28  | v1.0.1  | Offical release |
 | 2017-04-28  | v0.0.6  | Docs |
 | 2017-04-28  | v0.0.5  | Rename package as funcs-js |

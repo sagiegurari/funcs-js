@@ -9,10 +9,13 @@ describe('funcs', function () {
         var fn = function (arg1, arg2, arg3) {
             if (validateInput) {
                 assert.strictEqual(arg1, 1);
-                assert.strictEqual(arg2, 'test');
                 if (callbackStyle) {
+                    if (typeof arg2 !== 'function') {
+                        assert.strictEqual(arg2, 'test');
+                    }
                     assert.isUndefined(arg3);
                 } else {
+                    assert.strictEqual(arg2, 'test');
                     assert.strictEqual(arg3, false);
                 }
             }
@@ -556,6 +559,47 @@ describe('funcs', function () {
             });
         });
 
+        it('callback style', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.delay);
+
+            var delay = 20;
+            var fn = createCounterFn(true, true);
+            var output = funcs.delay(fn, delay, {
+                callbackStyle: true
+            });
+            assert.isFalse(output === fn);
+            var startTime = Date.now();
+            output(1, function (counter) {
+                assert.strictEqual(counter, 1);
+                assert.isTrue((Date.now() - startTime) >= delay);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                done();
+            }, 'bad');
+        });
+
+        it('options provided without delay', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.delay);
+
+            var fn = createCounterFn(true, true);
+            var output = funcs.delay(fn, {
+                callbackStyle: true
+            });
+            assert.isFalse(output === fn);
+            output(1, function (counter) {
+                assert.strictEqual(counter, 1);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                done();
+            }, 'bad');
+        });
+
         it('chaining', function (done) {
             var funcs = window.funcs;
             assert.isDefined(funcs);
@@ -630,6 +674,29 @@ describe('funcs', function () {
 
                 done();
             });
+
+            assert.isFalse(invoked);
+        });
+
+        it('callback style', function (done) {
+            var funcs = window.funcs;
+            assert.isDefined(funcs);
+
+            assert.isFunction(funcs.async);
+
+            var fn = createCounterFn(true, true);
+            var output = funcs.async(fn, {
+                callbackStyle: true
+            });
+            assert.isFalse(output === fn);
+            var invoked = false;
+            output(1, function (counter) {
+                invoked = true;
+                assert.strictEqual(counter, 1);
+                assert.strictEqual(fn.getCounter(), 1);
+
+                done();
+            }, 'bad');
 
             assert.isFalse(invoked);
         });

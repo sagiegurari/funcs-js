@@ -266,6 +266,8 @@
      * @public
      * @param {function} fn - The function to wrap
      * @param {Number} [delay=0] - The invocation delay in millies
+     * @param {Object} [options] - see details
+     * @param {Boolean} [options.callbackStyle=false] - If true, the provided function will only get the first 2 arguments (will improve runtime performance)
      * @returns {function} The new wrapper function
      * @example
      * ````js
@@ -275,9 +277,15 @@
      * var delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
      * ````
      */
-    funcs.delay = function (fn, delay) {
+    funcs.delay = function (fn, delay, options) {
         if (!this.isFunction(fn)) {
             return this.noop;
+        }
+
+        //if delay not provided, but options were provided
+        if (delay && (typeof delay === 'object')) {
+            options = delay;
+            delay = 0;
         }
 
         delay = delay || 0;
@@ -286,11 +294,20 @@
             return fn;
         }
 
-        var fnDelayWrapper = function () {
+        var callbackStyle = false;
+        if (options && options.callbackStyle) {
+            callbackStyle = true;
+        }
+
+        var fnDelayWrapper = function (arg1, arg2) {
             var fnArguments = arguments;
 
             setTimeout(function postDelay() {
-                fn.apply(null, fnArguments);
+                if (callbackStyle) {
+                    fn(arg1, arg2);
+                } else {
+                    fn.apply(null, fnArguments);
+                }
             }, delay);
         };
 
@@ -310,6 +327,8 @@
      * @alias funcs.async
      * @public
      * @param {function} fn - The function to wrap
+     * @param {Object} [options] - see details
+     * @param {Boolean} [options.callbackStyle=false] - If true, the provided function will only get the first 2 arguments (will improve runtime performance)
      * @returns {function} The new wrapper function
      * @example
      * ````js
@@ -319,8 +338,8 @@
      * var asyncOnceCallback = funcs.async(callback).once();
      * ````
      */
-    funcs.async = function (fn) {
-        return this.delay(fn, 0);
+    funcs.async = function (fn, options) {
+        return this.delay(fn, 0, options);
     };
 
     return funcs;
