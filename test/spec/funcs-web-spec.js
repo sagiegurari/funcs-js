@@ -532,7 +532,7 @@ describe('funcs', function () {
             var startTime = Date.now();
             output(function (counter) {
                 assert.strictEqual(counter, 1);
-                assert.isTrue((Date.now() - startTime) >= delay);
+                assert.isTrue((Date.now() - startTime) >= (delay / 2));
                 assert.strictEqual(fn.getCounter(), 1);
 
                 done();
@@ -552,7 +552,7 @@ describe('funcs', function () {
             var startTime = Date.now();
             output(1, 'test', false, function (counter) {
                 assert.strictEqual(counter, 1);
-                assert.isTrue((Date.now() - startTime) >= delay);
+                assert.isTrue((Date.now() - startTime) >= (delay / 2));
                 assert.strictEqual(fn.getCounter(), 1);
 
                 done();
@@ -574,7 +574,7 @@ describe('funcs', function () {
             var startTime = Date.now();
             output(1, function (counter) {
                 assert.strictEqual(counter, 1);
-                assert.isTrue((Date.now() - startTime) >= delay);
+                assert.isTrue((Date.now() - startTime) >= (delay / 2));
                 assert.strictEqual(fn.getCounter(), 1);
 
                 done();
