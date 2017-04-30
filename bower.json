@@ -1,6 +1,6 @@
 {
   "name": "funcs-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Function wrappers for enhanced behavior.",
   "authors": [
     "Sagie Gur-Ari <sagiegurari@gmail.com>"
@@ -22,8 +22,8 @@
     "tests",
     "example",
     "target",
-    "./*.yml",
-    "./*rc"
+    "/.*.yml",
+    "/.*rc"
   ],
   "dependencies": {},
   "devDependencies": {}
