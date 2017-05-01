@@ -221,6 +221,10 @@
                     return fn(arg1, arg2);
                 }
 
+                if (!arguments.length) {
+                    return fn();
+                }
+
                 return fn.apply(null, arguments);
             }
         };
@@ -305,6 +309,8 @@
             setTimeout(function postDelay() {
                 if (callbackStyle) {
                     fn(arg1, arg2);
+                } else if (!fnArguments.length) {
+                    fn();
                 } else {
                     fn.apply(null, fnArguments);
                 }

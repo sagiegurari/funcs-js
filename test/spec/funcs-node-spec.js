@@ -232,6 +232,23 @@ describe('funcs', function () {
             assert.strictEqual(fn.getCounter(), 2);
         });
 
+        it('no args', function () {
+            assert.isFunction(funcs.maxTimes);
+
+            var times = 5;
+            var counter = 0;
+            var output = funcs.maxTimes(function () {
+                counter++;
+                assert.strictEqual(arguments.length, 0);
+            }, times);
+            var index;
+            for (index = 0; index < (times + 5); index++) {
+                output();
+            }
+
+            assert.strictEqual(counter, times);
+        });
+
         it('callback style', function () {
             assert.isFunction(funcs.maxTimes);
 
@@ -298,6 +315,21 @@ describe('funcs', function () {
             assert.strictEqual(fn.getCounter(), 1);
             fn(1, 'test', false);
             assert.strictEqual(fn.getCounter(), 2);
+        });
+
+        it('no args', function () {
+            assert.isFunction(funcs.once);
+
+            var counter = 0;
+            var output = funcs.once(function () {
+                counter++;
+                assert.strictEqual(arguments.length, 0);
+            });
+            output();
+            output();
+            output();
+
+            assert.strictEqual(counter, 1);
         });
 
         it('callback style', function () {
@@ -411,6 +443,20 @@ describe('funcs', function () {
             });
         });
 
+        it('no args', function (done) {
+            assert.isFunction(funcs.delay);
+
+            var fn = createCounterFn(true, true);
+            var output = funcs.delay(function () {
+                assert.strictEqual(arguments.length, 0);
+            }, 0);
+            assert.isFalse(output === fn);
+
+            output();
+
+            setTimeout(done, 20);
+        });
+
         it('callback style', function (done) {
             assert.isFunction(funcs.delay);
 
@@ -510,6 +556,20 @@ describe('funcs', function () {
             });
 
             assert.isFalse(invoked);
+        });
+
+        it('no args', function (done) {
+            assert.isFunction(funcs.async);
+
+            var fn = createCounterFn(true, true);
+            var output = funcs.async(function () {
+                assert.strictEqual(arguments.length, 0);
+            });
+            assert.isFalse(output === fn);
+
+            output();
+
+            setTimeout(done, 20);
         });
 
         it('callback style', function (done) {
