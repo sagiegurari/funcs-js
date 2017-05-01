@@ -606,12 +606,12 @@ describe('funcs', function () {
             var fn = createCounterFn(true, true);
             var output = funcs.delay(function () {
                 assert.strictEqual(arguments.length, 0);
+
+                done();
             }, 0);
             assert.isFalse(output === fn);
 
             output();
-
-            setTimeout(done, 20);
         });
 
         it('callback style', function (done) {
@@ -742,12 +742,12 @@ describe('funcs', function () {
             var fn = createCounterFn(true, true);
             var output = funcs.async(function () {
                 assert.strictEqual(arguments.length, 0);
+
+                done();
             });
             assert.isFalse(output === fn);
 
             output();
-
-            setTimeout(done, 20);
         });
 
         it('callback style', function (done) {
