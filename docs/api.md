@@ -87,7 +87,7 @@ var delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
 
 ### funcs.once(fn, [options]) ⇒ <code>function</code>
 Ensures the provided function is invoked only once.<br>
-This is the same as calling funcs.times(fn, 1)<br>
+This is the same as calling funcs.maxTimes(fn, 1)<br>
 This function output can be chained with other funcs apis.
 
 **Returns**: <code>function</code> - The new wrapper function  

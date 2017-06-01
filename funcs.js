@@ -237,7 +237,7 @@
 
     /**
      * Ensures the provided function is invoked only once.<br>
-     * This is the same as calling funcs.times(fn, 1)<br>
+     * This is the same as calling funcs.maxTimes(fn, 1)<br>
      * This function output can be chained with other funcs apis.
      *
      * @function
