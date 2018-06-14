@@ -1,9 +1,15 @@
 language: node_js
 sudo: required
 node_js:
-  - "lts/*"
+  - "node"
+  - "10"
+  - "8"
+  - "6"
 addons:
   chrome: stable
-before_script:
-  - npm install -g bower
-  - bower install
+matrix:
+  allow_failures:
+    - node_js: node
+env:
+  global:
+    - KARMA_TEST_NODE_VERSION=10
