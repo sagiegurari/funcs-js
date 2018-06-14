@@ -1,6 +1,6 @@
 {
   "name": "funcs-js",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Function wrappers for enhanced behavior.",
   "author": {
     "name": "Sagie Gur-Ari",
@@ -46,14 +46,13 @@
     "husky": "latest",
     "js-project-commons": "latest",
     "karma": "latest",
+    "karma-chrome-launcher": "latest",
     "karma-cli": "latest",
     "karma-coverage": "latest",
     "karma-mocha": "latest",
-    "karma-phantomjs-launcher": "latest",
     "karma-sinon-chai": "latest",
     "lolex": "latest",
     "mocha": "latest",
-    "phantomjs-prebuilt": "latest",
     "sinon": "latest",
     "sinon-chai": "latest"
   }
