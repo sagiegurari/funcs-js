@@ -1,6 +1,6 @@
 {
   "name": "funcs-js",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Function wrappers for enhanced behavior.",
   "author": {
     "name": "Sagie Gur-Ari",
@@ -33,10 +33,13 @@
     "format": "grunt format",
     "build": "grunt build",
     "jstest": "grunt jstest",
-    "debug": "mocha --debug-brk=5858 --no-timeouts --ui bdd --reporter spec --recursive ./test/spec",
-    "prepush": "npm run build",
     "postpublish": "grunt post-publish",
     "grunt": "grunt"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run build"
+    }
   },
   "devDependencies": {
     "chai": "latest",
