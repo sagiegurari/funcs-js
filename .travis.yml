@@ -1,9 +1,9 @@
 language: node_js
 node_js:
   - "node"
+  - "12"
   - "10"
   - "8"
-  - "6"
 addons:
   chrome: stable
 matrix:
@@ -11,4 +11,4 @@ matrix:
     - node_js: node
 env:
   global:
-    - KARMA_TEST_NODE_VERSION=10
+    - KARMA_TEST_NODE_VERSION=12
