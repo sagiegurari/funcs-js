@@ -1,4 +1,4 @@
-/*global describe: false, assert: false, it: false */
+/*global assert: false */
 
 describe('funcs', function () {
     'use strict';

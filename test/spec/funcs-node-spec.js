@@ -1,7 +1,6 @@
 /*jslint node: true, browser: false*/
 'use strict';
 
-/*global describe: false, it: false */
 /*eslint no-implicit-globals: 'off', strict: ['error', 'global']*/
 /*jshint node: true, browser: false*/
 
