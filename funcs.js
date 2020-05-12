@@ -22,7 +22,7 @@
 (function initFuncs(global, factory) {
     'use strict';
 
-    var funcs = factory();
+    const funcs = factory();
 
     /*istanbul ignore next*/
     /**
@@ -54,7 +54,7 @@
 }(this, function initFuncs() {
     'use strict';
 
-    var funcs = {};
+    const funcs = {};
 
     /**
      * Adds chaining support for the provided function.
@@ -65,7 +65,7 @@
      * @private
      * @param {function} fn - Adds the funcs APIs to the provided function with this function as a context
      */
-    var addChaining = function (fn) {
+    const addChaining = function (fn) {
         /**
          * Chain function.
          *
@@ -145,7 +145,7 @@
      * @returns {Boolean} True if the provided argument is a function
      * @example
      * ````js
-     * var isFn = funcs.isFunction(myFunction);
+     * const isFn = funcs.isFunction(myFunction);
      *
      * funcs.isFunction(function () {}); //true
      * funcs.isFunction(); //false
@@ -169,7 +169,7 @@
      * @returns {function} The original function if provided, or a noop
      * @example
      * ````js
-     * var handler = funcs.ensure(maybeHandler);
+     * const handler = funcs.ensure(maybeHandler);
      * ````
      */
     funcs.ensure = function (fn) {
@@ -195,10 +195,10 @@
      * @returns {function} The new wrapper function
      * @example
      * ````js
-     * var onlyOnceCallback = funcs.maxTimes(callback, 1);
+     * const onlyOnceCallback = funcs.maxTimes(callback, 1);
      *
      * //can also chain multiple modifications (chained functions do not require original function as argument)
-     * var delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
+     * const delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
      * ````
      */
     funcs.maxTimes = function (fn, times, options) {
@@ -206,14 +206,14 @@
             return this.noop;
         }
 
-        var callbackStyle = false;
+        let callbackStyle = false;
         if (options && options.callbackStyle) {
             callbackStyle = true;
         }
 
-        var counter = 0;
+        let counter = 0;
 
-        var fnMaxTimesWrapper = function (arg1, arg2) {
+        const fnMaxTimesWrapper = function (arg1, arg2) {
             if (counter < times) {
                 counter++;
 
@@ -250,10 +250,10 @@
      * @returns {function} The new wrapper function
      * @example
      * ````js
-     * var onlyOnceCallback = funcs.once(callback);
+     * const onlyOnceCallback = funcs.once(callback);
      *
      * //can also chain multiple modifications (chained functions do not require original function as argument)
-     * var asyncOnceCallback = funcs.once(callback).async();
+     * const asyncOnceCallback = funcs.once(callback).async();
      * ````
      */
     funcs.once = function (fn, options) {
@@ -275,10 +275,10 @@
      * @returns {function} The new wrapper function
      * @example
      * ````js
-     * var delayedCallback = funcs.delay(callback, 500);
+     * const delayedCallback = funcs.delay(callback, 500);
      *
      * //can also chain multiple modifications (chained functions do not require original function as argument)
-     * var delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
+     * const delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
      * ````
      */
     funcs.delay = function (fn, delay, options) {
@@ -298,13 +298,13 @@
             return fn;
         }
 
-        var callbackStyle = false;
+        let callbackStyle = false;
         if (options && options.callbackStyle) {
             callbackStyle = true;
         }
 
-        var fnDelayWrapper = function (arg1, arg2) {
-            var fnArguments = arguments;
+        const fnDelayWrapper = function (arg1, arg2) {
+            const fnArguments = arguments;
 
             setTimeout(function postDelay() {
                 if (callbackStyle) {
@@ -338,10 +338,10 @@
      * @returns {function} The new wrapper function
      * @example
      * ````js
-     * var asyncCallback = funcs.async(callback);
+     * const asyncCallback = funcs.async(callback);
      *
      * //can also chain multiple modifications (chained functions do not require original function as argument)
-     * var asyncOnceCallback = funcs.async(callback).once();
+     * const asyncOnceCallback = funcs.async(callback).once();
      * ````
      */
     funcs.async = function (fn, options) {

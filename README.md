@@ -1,6 +1,6 @@
 # funcs-js
 
-[![NPM Version](http://img.shields.io/npm/v/funcs-js.svg?style=flat)](https://www.npmjs.org/package/funcs-js) [![Build Status](https://travis-ci.org/sagiegurari/funcs-js.svg)](http://travis-ci.org/sagiegurari/funcs-js) [![Coverage Status](https://coveralls.io/repos/sagiegurari/funcs-js/badge.svg)](https://coveralls.io/r/sagiegurari/funcs-js) [![Known Vulnerabilities](https://snyk.io/test/github/sagiegurari/funcs-js/badge.svg)](https://snyk.io/test/github/sagiegurari/funcs-js) [![Inline docs](http://inch-ci.org/github/sagiegurari/funcs-js.svg?branch=master)](http://inch-ci.org/github/sagiegurari/funcs-js) [![License](https://img.shields.io/npm/l/funcs-js.svg?style=flat)](https://github.com/sagiegurari/funcs-js/blob/master/LICENSE) [![Total Downloads](https://img.shields.io/npm/dt/funcs-js.svg?style=flat)](https://www.npmjs.org/package/funcs-js) [![Dependency Status](https://david-dm.org/sagiegurari/funcs-js.svg)](https://david-dm.org/sagiegurari/funcs-js) [![devDependency Status](https://david-dm.org/sagiegurari/funcs-js/dev-status.svg)](https://david-dm.org/sagiegurari/funcs-js?type=dev)
+[![NPM Version](http://img.shields.io/npm/v/funcs-js.svg?style=flat)](https://www.npmjs.org/package/funcs-js) [![CI](https://github.com/sagiegurari/funcs-js/workflows/CI/badge.svg?branch=master)](https://github.com/sagiegurari/funcs-js/actions) [![Coverage Status](https://coveralls.io/repos/sagiegurari/funcs-js/badge.svg)](https://coveralls.io/r/sagiegurari/funcs-js) [![Known Vulnerabilities](https://snyk.io/test/github/sagiegurari/funcs-js/badge.svg)](https://snyk.io/test/github/sagiegurari/funcs-js) [![Inline docs](http://inch-ci.org/github/sagiegurari/funcs-js.svg?branch=master)](http://inch-ci.org/github/sagiegurari/funcs-js) [![License](https://img.shields.io/npm/l/funcs-js.svg?style=flat)](https://github.com/sagiegurari/funcs-js/blob/master/LICENSE) [![Total Downloads](https://img.shields.io/npm/dt/funcs-js.svg?style=flat)](https://www.npmjs.org/package/funcs-js)
 
 > Function wrappers for enhanced behavior.
 
@@ -50,10 +50,10 @@ This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
-var onlyOnceCallback = funcs.once(callback);
+const onlyOnceCallback = funcs.once(callback);
 
 //can also chain multiple modifications (chained functions do not require original function as argument)
-var asyncOnceCallback = funcs.once(callback).async();
+const asyncOnceCallback = funcs.once(callback).async();
 ````
 <!-- markdownlint-enable MD009 MD031 MD036 -->
 
@@ -65,10 +65,10 @@ This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
-var onlyOnceCallback = funcs.maxTimes(callback, 1);
+const onlyOnceCallback = funcs.maxTimes(callback, 1);
 
 //can also chain multiple modifications (chained functions do not require original function as argument)
-var delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
+const delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
 ````
 <!-- markdownlint-enable MD009 MD031 MD036 -->
 
@@ -81,10 +81,10 @@ This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
-var asyncCallback = funcs.async(callback);
+const asyncCallback = funcs.async(callback);
 
 //can also chain multiple modifications (chained functions do not require original function as argument)
-var asyncOnceCallback = funcs.async(callback).once();
+const asyncOnceCallback = funcs.async(callback).once();
 ````
 <!-- markdownlint-enable MD009 MD031 MD036 -->
 
@@ -96,10 +96,10 @@ This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
-var delayedCallback = funcs.delay(callback, 500);
+const delayedCallback = funcs.delay(callback, 500);
 
 //can also chain multiple modifications (chained functions do not require original function as argument)
-var delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
+const delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
 ````
 <!-- markdownlint-enable MD009 MD031 MD036 -->
 
@@ -110,7 +110,7 @@ Returns true if the provided argument is a function.
 
 **Example**  
 ````js
-var isFn = funcs.isFunction(myFunction);
+const isFn = funcs.isFunction(myFunction);
 
 funcs.isFunction(function () {}); //true
 funcs.isFunction(); //false
@@ -134,7 +134,7 @@ If a function is provided, it will be returned, otherwise a noop function will b
 
 **Example**  
 ````js
-var handler = funcs.ensure(maybeHandler);
+const handler = funcs.ensure(maybeHandler);
 ````
 <!-- markdownlint-enable MD009 MD031 MD036 -->
 
@@ -163,6 +163,7 @@ See [contributing guide](.github/CONTRIBUTING.md)
 
 | Date        | Version | Description |
 | ----------- | ------- | ----------- |
+| 2020-05-12  | v2.0.0  | Migrate to github actions, upgrade minimal node version and remove bower |
 | 2019-02-08  | v1.0.18 | Maintenance |
 | 2017-04-28  | v1.0.1  | Offical release |
 | 2017-04-28  | v0.0.6  | Docs |

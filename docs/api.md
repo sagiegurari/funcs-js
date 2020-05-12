@@ -36,7 +36,7 @@ Returns true if the provided argument is a function.
 
 **Example**  
 ````js
-var isFn = funcs.isFunction(myFunction);
+const isFn = funcs.isFunction(myFunction);
 
 funcs.isFunction(function () {}); //true
 funcs.isFunction(); //false
@@ -58,7 +58,7 @@ If a function is provided, it will be returned, otherwise a noop function will b
 
 **Example**  
 ````js
-var handler = funcs.ensure(maybeHandler);
+const handler = funcs.ensure(maybeHandler);
 ````
 <a name="funcs.maxTimes"></a>
 
@@ -78,10 +78,10 @@ This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
-var onlyOnceCallback = funcs.maxTimes(callback, 1);
+const onlyOnceCallback = funcs.maxTimes(callback, 1);
 
 //can also chain multiple modifications (chained functions do not require original function as argument)
-var delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
+const delayedMaxTimesCallback = funcs.maxTimes(callback, 5).delay(500);
 ````
 <a name="funcs.once"></a>
 
@@ -101,10 +101,10 @@ This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
-var onlyOnceCallback = funcs.once(callback);
+const onlyOnceCallback = funcs.once(callback);
 
 //can also chain multiple modifications (chained functions do not require original function as argument)
-var asyncOnceCallback = funcs.once(callback).async();
+const asyncOnceCallback = funcs.once(callback).async();
 ````
 <a name="funcs.delay"></a>
 
@@ -124,10 +124,10 @@ This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
-var delayedCallback = funcs.delay(callback, 500);
+const delayedCallback = funcs.delay(callback, 500);
 
 //can also chain multiple modifications (chained functions do not require original function as argument)
-var delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
+const delayedMaxTimesCallback = funcs.delay(callback, 500).maxTimes(5);
 ````
 <a name="funcs.async"></a>
 
@@ -147,8 +147,8 @@ This function output can be chained with other funcs apis.
 
 **Example**  
 ````js
-var asyncCallback = funcs.async(callback);
+const asyncCallback = funcs.async(callback);
 
 //can also chain multiple modifications (chained functions do not require original function as argument)
-var asyncOnceCallback = funcs.async(callback).once();
+const asyncOnceCallback = funcs.async(callback).once();
 ````

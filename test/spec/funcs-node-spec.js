@@ -4,15 +4,15 @@
 /*eslint no-implicit-globals: 'off', strict: ['error', 'global']*/
 /*jshint node: true, browser: false*/
 
-var chai = require('chai');
-var assert = chai.assert;
-var funcs = require('../../funcs');
+const chai = require('chai');
+const assert = chai.assert;
+const funcs = require('../../funcs');
 
 describe('funcs', function () {
-    var createCounterFn = function (validateInput, callbackStyle) {
-        var counter = 0;
+    const createCounterFn = function (validateInput, callbackStyle) {
+        let counter = 0;
 
-        var fn = function (arg1, arg2, arg3) {
+        const fn = function (arg1, arg2, arg3) {
             if (validateInput) {
                 assert.strictEqual(arg1, 1);
                 if (callbackStyle) {
@@ -28,7 +28,7 @@ describe('funcs', function () {
 
             counter++;
 
-            var cb = arguments[arguments.length - 1];
+            const cb = arguments[arguments.length - 1];
             if (cb && (typeof cb === 'function')) {
                 cb(counter);
             }
@@ -107,60 +107,60 @@ describe('funcs', function () {
         it('no input', function () {
             assert.isFunction(funcs.ensure);
 
-            var output = funcs.ensure();
+            const output = funcs.ensure();
             assert.isTrue(output === funcs.noop);
         });
 
         it('null', function () {
             assert.isFunction(funcs.ensure);
 
-            var output = funcs.ensure(null);
+            const output = funcs.ensure(null);
             assert.isTrue(output === funcs.noop);
         });
 
         it('string', function () {
             assert.isFunction(funcs.ensure);
 
-            var output = funcs.ensure('test');
+            const output = funcs.ensure('test');
             assert.isTrue(output === funcs.noop);
         });
 
         it('number', function () {
             assert.isFunction(funcs.ensure);
 
-            var output = funcs.ensure(5);
+            const output = funcs.ensure(5);
             assert.isTrue(output === funcs.noop);
         });
 
         it('true', function () {
             assert.isFunction(funcs.ensure);
 
-            var output = funcs.ensure(true);
+            const output = funcs.ensure(true);
             assert.isTrue(output === funcs.noop);
         });
 
         it('false', function () {
             assert.isFunction(funcs.ensure);
 
-            var output = funcs.ensure(false);
+            const output = funcs.ensure(false);
             assert.isTrue(output === funcs.noop);
         });
 
         it('object', function () {
             assert.isFunction(funcs.ensure);
 
-            var output = funcs.ensure({});
+            const output = funcs.ensure({});
             assert.isTrue(output === funcs.noop);
         });
 
         it('function', function () {
             assert.isFunction(funcs.ensure);
 
-            var testFn = function () {
+            const testFn = function () {
                 return true;
             };
 
-            var output = funcs.ensure(testFn);
+            const output = funcs.ensure(testFn);
             assert.isTrue(output === testFn);
         });
     });
@@ -169,31 +169,31 @@ describe('funcs', function () {
         it('no function', function () {
             assert.isFunction(funcs.maxTimes);
 
-            var output = funcs.maxTimes(10, 5);
+            const output = funcs.maxTimes(10, 5);
             assert.isTrue(output === funcs.noop);
         });
 
         it('times not a number', function () {
             assert.isFunction(funcs.maxTimes);
 
-            var fn = createCounterFn();
-            var output = funcs.maxTimes(fn, {});
+            const fn = createCounterFn();
+            const output = funcs.maxTimes(fn, {});
             assert.isTrue(output === funcs.noop);
         });
 
         it('times negative', function () {
             assert.isFunction(funcs.maxTimes);
 
-            var fn = createCounterFn();
-            var output = funcs.maxTimes(fn, -1);
+            const fn = createCounterFn();
+            const output = funcs.maxTimes(fn, -1);
             assert.isTrue(output === funcs.noop);
         });
 
         it('times is 0', function () {
             assert.isFunction(funcs.maxTimes);
 
-            var fn = createCounterFn();
-            var output = funcs.maxTimes(fn, 0);
+            const fn = createCounterFn();
+            const output = funcs.maxTimes(fn, 0);
             assert.strictEqual(fn.getCounter(), 0);
             assert.isUndefined(output());
             assert.strictEqual(fn.getCounter(), 0);
@@ -204,12 +204,11 @@ describe('funcs', function () {
         it('times is positive', function () {
             assert.isFunction(funcs.maxTimes);
 
-            var times = 5;
-            var fn = createCounterFn();
-            var output = funcs.maxTimes(fn, times);
+            const times = 5;
+            const fn = createCounterFn();
+            const output = funcs.maxTimes(fn, times);
             assert.strictEqual(fn.getCounter(), 0);
-            var index;
-            for (index = 0; index < times; index++) {
+            for (let index = 0; index < times; index++) {
                 assert.strictEqual(output(), (index + 1));
             }
             assert.isUndefined(output());
@@ -221,8 +220,8 @@ describe('funcs', function () {
         it('validate input proxy', function () {
             assert.isFunction(funcs.maxTimes);
 
-            var fn = createCounterFn(true);
-            var output = funcs.maxTimes(fn, 1);
+            const fn = createCounterFn(true);
+            const output = funcs.maxTimes(fn, 1);
             assert.strictEqual(fn.getCounter(), 0);
             assert.strictEqual(output(1, 'test', false), 1);
             assert.isUndefined(output(1, 'test', false));
@@ -234,14 +233,13 @@ describe('funcs', function () {
         it('no args', function () {
             assert.isFunction(funcs.maxTimes);
 
-            var times = 5;
-            var counter = 0;
-            var output = funcs.maxTimes(function () {
+            const times = 5;
+            let counter = 0;
+            const output = funcs.maxTimes(function () {
                 counter++;
                 assert.strictEqual(arguments.length, 0);
             }, times);
-            var index;
-            for (index = 0; index < (times + 5); index++) {
+            for (let index = 0; index < (times + 5); index++) {
                 output();
             }
 
@@ -251,8 +249,8 @@ describe('funcs', function () {
         it('callback style', function () {
             assert.isFunction(funcs.maxTimes);
 
-            var fn = createCounterFn(true, true);
-            var output = funcs.maxTimes(fn, 1, {
+            const fn = createCounterFn(true, true);
+            const output = funcs.maxTimes(fn, 1, {
                 callbackStyle: true
             });
             assert.strictEqual(fn.getCounter(), 0);
@@ -266,10 +264,10 @@ describe('funcs', function () {
         it('chaining', function (done) {
             assert.isFunction(funcs.maxTimes);
 
-            var fn = createCounterFn();
-            var output = funcs.maxTimes(fn, 1).async();
+            const fn = createCounterFn();
+            const output = funcs.maxTimes(fn, 1).async();
             assert.strictEqual(fn.getCounter(), 0);
-            var result = output(function (counter) {
+            const result = output(function (counter) {
                 assert.strictEqual(counter, 1);
 
                 output(function () {
@@ -286,15 +284,15 @@ describe('funcs', function () {
         it('no function', function () {
             assert.isFunction(funcs.once);
 
-            var output = funcs.once(10);
+            const output = funcs.once(10);
             assert.isTrue(output === funcs.noop);
         });
 
         it('once', function () {
             assert.isFunction(funcs.once);
 
-            var fn = createCounterFn();
-            var output = funcs.once(fn);
+            const fn = createCounterFn();
+            const output = funcs.once(fn);
             assert.strictEqual(fn.getCounter(), 0);
             assert.strictEqual(output(), 1);
             assert.isUndefined(output());
@@ -306,8 +304,8 @@ describe('funcs', function () {
         it('validate input proxy', function () {
             assert.isFunction(funcs.once);
 
-            var fn = createCounterFn(true);
-            var output = funcs.once(fn);
+            const fn = createCounterFn(true);
+            const output = funcs.once(fn);
             assert.strictEqual(fn.getCounter(), 0);
             assert.strictEqual(output(1, 'test', false), 1);
             assert.isUndefined(output(1, 'test', false));
@@ -319,8 +317,8 @@ describe('funcs', function () {
         it('no args', function () {
             assert.isFunction(funcs.once);
 
-            var counter = 0;
-            var output = funcs.once(function () {
+            let counter = 0;
+            const output = funcs.once(function () {
                 counter++;
                 assert.strictEqual(arguments.length, 0);
             });
@@ -334,8 +332,8 @@ describe('funcs', function () {
         it('callback style', function () {
             assert.isFunction(funcs.once);
 
-            var fn = createCounterFn(true, true);
-            var output = funcs.once(fn, {
+            const fn = createCounterFn(true, true);
+            const output = funcs.once(fn, {
                 callbackStyle: true
             });
             assert.strictEqual(fn.getCounter(), 0);
@@ -349,10 +347,10 @@ describe('funcs', function () {
         it('chaining', function (done) {
             assert.isFunction(funcs.once);
 
-            var fn = createCounterFn();
-            var output = funcs.once(fn).delay(0);
+            const fn = createCounterFn();
+            const output = funcs.once(fn).delay(0);
             assert.strictEqual(fn.getCounter(), 0);
-            var result = output(function (counter) {
+            const result = output(function (counter) {
                 assert.strictEqual(counter, 1);
 
                 output(function () {
@@ -369,15 +367,15 @@ describe('funcs', function () {
         it('no function', function () {
             assert.isFunction(funcs.delay);
 
-            var output = funcs.delay(10, 10);
+            const output = funcs.delay(10, 10);
             assert.isTrue(output === funcs.noop);
         });
 
         it('delay not provided', function (done) {
             assert.isFunction(funcs.delay);
 
-            var fn = createCounterFn();
-            var output = funcs.delay(fn);
+            const fn = createCounterFn();
+            const output = funcs.delay(fn);
             assert.isFalse(output === fn);
             output(function (counter) {
                 assert.strictEqual(counter, 1);
@@ -389,16 +387,16 @@ describe('funcs', function () {
         it('negative delay', function () {
             assert.isFunction(funcs.delay);
 
-            var fn = createCounterFn();
-            var output = funcs.delay(fn, -1);
+            const fn = createCounterFn();
+            const output = funcs.delay(fn, -1);
             assert.isTrue(output === fn);
         });
 
         it('delay is 0', function (done) {
             assert.isFunction(funcs.delay);
 
-            var fn = createCounterFn();
-            var output = funcs.delay(fn, 0);
+            const fn = createCounterFn();
+            const output = funcs.delay(fn, 0);
             assert.isFalse(output === fn);
             output(function (counter) {
                 assert.strictEqual(counter, 1);
@@ -411,11 +409,11 @@ describe('funcs', function () {
         it('delay is positive', function (done) {
             assert.isFunction(funcs.delay);
 
-            var delay = 20;
-            var fn = createCounterFn();
-            var output = funcs.delay(fn, delay);
+            const delay = 20;
+            const fn = createCounterFn();
+            const output = funcs.delay(fn, delay);
             assert.isFalse(output === fn);
-            var startTime = Date.now();
+            const startTime = Date.now();
             output(function (counter) {
                 assert.strictEqual(counter, 1);
                 assert.isTrue((Date.now() - startTime) >= (delay / 2));
@@ -428,11 +426,11 @@ describe('funcs', function () {
         it('validate input proxy', function (done) {
             assert.isFunction(funcs.delay);
 
-            var delay = 20;
-            var fn = createCounterFn(true);
-            var output = funcs.delay(fn, delay);
+            const delay = 20;
+            const fn = createCounterFn(true);
+            const output = funcs.delay(fn, delay);
             assert.isFalse(output === fn);
-            var startTime = Date.now();
+            const startTime = Date.now();
             output(1, 'test', false, function (counter) {
                 assert.strictEqual(counter, 1);
                 assert.isTrue((Date.now() - startTime) >= (delay / 2));
@@ -445,8 +443,8 @@ describe('funcs', function () {
         it('no args', function (done) {
             assert.isFunction(funcs.delay);
 
-            var fn = createCounterFn(true, true);
-            var output = funcs.delay(function () {
+            const fn = createCounterFn(true, true);
+            const output = funcs.delay(function () {
                 assert.strictEqual(arguments.length, 0);
 
                 done();
@@ -459,13 +457,13 @@ describe('funcs', function () {
         it('callback style', function (done) {
             assert.isFunction(funcs.delay);
 
-            var delay = 20;
-            var fn = createCounterFn(true, true);
-            var output = funcs.delay(fn, delay, {
+            const delay = 20;
+            const fn = createCounterFn(true, true);
+            const output = funcs.delay(fn, delay, {
                 callbackStyle: true
             });
             assert.isFalse(output === fn);
-            var startTime = Date.now();
+            const startTime = Date.now();
             output(1, function (counter) {
                 assert.strictEqual(counter, 1);
                 assert.isTrue((Date.now() - startTime) >= (delay / 2));
@@ -478,8 +476,8 @@ describe('funcs', function () {
         it('options provided without delay', function (done) {
             assert.isFunction(funcs.delay);
 
-            var fn = createCounterFn(true, true);
-            var output = funcs.delay(fn, {
+            const fn = createCounterFn(true, true);
+            const output = funcs.delay(fn, {
                 callbackStyle: true
             });
             assert.isFalse(output === fn);
@@ -494,11 +492,11 @@ describe('funcs', function () {
         it('chaining', function (done) {
             assert.isFunction(funcs.delay);
 
-            var delay = 20;
-            var fn = createCounterFn();
-            var output = funcs.delay(fn, delay).once();
+            const delay = 20;
+            const fn = createCounterFn();
+            const output = funcs.delay(fn, delay).once();
             assert.strictEqual(fn.getCounter(), 0);
-            var startTime = Date.now();
+            const startTime = Date.now();
             output(function (counter) {
                 assert.strictEqual(counter, 1);
                 assert.isTrue((Date.now() - startTime) >= delay);
@@ -517,17 +515,17 @@ describe('funcs', function () {
         it('no function', function () {
             assert.isFunction(funcs.async);
 
-            var output = funcs.async(10);
+            const output = funcs.async(10);
             assert.isTrue(output === funcs.noop);
         });
 
         it('async', function (done) {
             assert.isFunction(funcs.async);
 
-            var fn = createCounterFn();
-            var output = funcs.async(fn);
+            const fn = createCounterFn();
+            const output = funcs.async(fn);
             assert.isFalse(output === fn);
-            var invoked = false;
+            let invoked = false;
             output(function (counter) {
                 invoked = true;
                 assert.strictEqual(counter, 1);
@@ -542,10 +540,10 @@ describe('funcs', function () {
         it('validate input proxy', function (done) {
             assert.isFunction(funcs.async);
 
-            var fn = createCounterFn(true);
-            var output = funcs.async(fn);
+            const fn = createCounterFn(true);
+            const output = funcs.async(fn);
             assert.isFalse(output === fn);
-            var invoked = false;
+            let invoked = false;
             output(1, 'test', false, function (counter) {
                 invoked = true;
                 assert.strictEqual(counter, 1);
@@ -560,8 +558,8 @@ describe('funcs', function () {
         it('no args', function (done) {
             assert.isFunction(funcs.async);
 
-            var fn = createCounterFn(true, true);
-            var output = funcs.async(function () {
+            const fn = createCounterFn(true, true);
+            const output = funcs.async(function () {
                 assert.strictEqual(arguments.length, 0);
 
                 done();
@@ -574,12 +572,12 @@ describe('funcs', function () {
         it('callback style', function (done) {
             assert.isFunction(funcs.async);
 
-            var fn = createCounterFn(true, true);
-            var output = funcs.async(fn, {
+            const fn = createCounterFn(true, true);
+            const output = funcs.async(fn, {
                 callbackStyle: true
             });
             assert.isFalse(output === fn);
-            var invoked = false;
+            let invoked = false;
             output(1, function (counter) {
                 invoked = true;
                 assert.strictEqual(counter, 1);
@@ -594,10 +592,10 @@ describe('funcs', function () {
         it('chaining', function (done) {
             assert.isFunction(funcs.async);
 
-            var fn = createCounterFn();
-            var output = funcs.async(fn).maxTimes(1);
+            const fn = createCounterFn();
+            const output = funcs.async(fn).maxTimes(1);
             assert.strictEqual(fn.getCounter(), 0);
-            var invoked = false;
+            let invoked = false;
             output(function (counter) {
                 invoked = true;
                 assert.strictEqual(counter, 1);
