@@ -7,10 +7,13 @@
 module.exports = function (grunt) {
     const commons = require('js-project-commons');
 
+    const webBuild = !!process.env.CI_RUN_KARMA;
+
     commons.grunt.config.initConfig(grunt, {
         buildConfig: {
             projectRoot: __dirname,
-            duelProject: !process.env.CI_RUN_KARMA
+            dualProject: !webBuild,
+            nodeProject: !webBuild,
         },
         apidoc2readme: {
             readme: {
