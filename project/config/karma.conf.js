@@ -3,7 +3,7 @@
 module.exports = function (config) {
     'use strict';
 
-    const mainJSFile = require('../../pcakage.json').main;
+    const mainJSFile = require('../../package.json').main;
     const commons = require('js-project-commons');
 
     commons.tools.karma(config, {
