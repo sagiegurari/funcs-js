@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: ['10.x', '12.x', '14.x']
+        node-version: ['12.x', '14.x']
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -21,11 +21,13 @@ jobs:
       run: npm install
     - name: Run CI
       run: npm test
+    - name: Run Coverage
+      run: npm run coverage
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: './target/coverage/report/lcov.info'
+        path-to-lcov: './coverage/lcov.info'
   web-ci:
     name: Web CI
     runs-on: ubuntu-latest
@@ -36,16 +38,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Install
-      uses: ianwalter/puppeteer@v2.0.0
-      with:
-        args: npm install
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@latest
+    - name: Install Dependencies
+      run: npm install
     - name: Run CI
-      uses: ianwalter/puppeteer@v2.0.0
-      with:
-        args: npm test
+      run: npm test
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: './target/coverage/report/lcov.info'
+        path-to-lcov: './coverage/lcov.info'
