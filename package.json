@@ -52,7 +52,7 @@
     "karma-coverage": "^2",
     "karma-mocha": "^2",
     "karma-sinon-chai": "^2",
-    "mocha": "^9",
+    "mocha": "^10",
     "nyc": "^15",
     "sinon": "^13",
     "sinon-chai": "^3",
